@@ -1,4 +1,4 @@
-package proyectobatallanaval; // Asegúrate de que el nombre del paquete sea correcto
+package proyectobatallanaval; 
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,10 +20,11 @@ public void start(Stage primaryStage) {
     
     Button btnStart = new Button("Start Game");
     btnStart.setOnAction(e -> {
-        ShipScreen shipScreen = new ShipScreen();
-        shipScreen.start(new Stage());
-        primaryStage.close(); 
-    });
+    MenuScreen menuScreen = new MenuScreen();
+    menuScreen.start(new Stage());
+    primaryStage.close();
+     });
+
 
     
     VBox layout = new VBox(20, title, btnStart);
