@@ -13,15 +13,18 @@ public class MenuScreen extends Application {
     private String difficulty = "Medium";
     private String gameMode = "Vs Bot";
 
+    public static String gameModeGlobal = "Vs Bot";
+    public static String difficultyGlobal = "Medium";
+
     @Override
     public void start(Stage primaryStage) {
         Label title = new Label("Battleship - Main Menu");
         title.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
-        
+
         Label nameLabel1 = new Label("Player 1 Name:");
         TextField nameInput1 = new TextField();
         nameInput1.setPromptText("Enter name");
-        
+
         Label nameLabel2 = new Label("Player 2 Name:");
         TextField nameInput2 = new TextField();
         nameInput2.setPromptText("Enter name");
@@ -32,7 +35,7 @@ public class MenuScreen extends Application {
         ChoiceBox<String> difficultyBox = new ChoiceBox<>();
         difficultyBox.getItems().addAll("Easy", "Medium", "Hard");
         difficultyBox.setValue("Medium");
-        
+
         Label modeLabel = new Label("Select Game Mode:");
         ChoiceBox<String> modeBox = new ChoiceBox<>();
         modeBox.getItems().addAll("Vs Bot", "Vs Human");
@@ -49,17 +52,23 @@ public class MenuScreen extends Application {
             player1Name = nameInput1.getText();
             player2Name = modeBox.getValue().equals("Vs Human") ? nameInput2.getText() : "Computer";
             difficulty = difficultyBox.getValue();
+            gameMode = modeBox.getValue();
+
             
+            gameModeGlobal = gameMode;
+            difficultyGlobal = difficulty;
+
             ShipScreen shipScreen = new ShipScreen(difficulty, player1Name, player2Name);
             Stage shipStage = new Stage();
             shipScreen.start(shipStage);
             primaryStage.close();
         });
 
-        VBox layout = new VBox(15, title, nameLabel1, nameInput1, nameLabel2, nameInput2, difficultyLabel, difficultyBox, modeLabel, modeBox, startButton);
+        VBox layout = new VBox(15, title, nameLabel1, nameInput1, nameLabel2, nameInput2,
+                difficultyLabel, difficultyBox, modeLabel, modeBox, startButton);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-padding: 20px;");
-        
+
         Scene scene = new Scene(layout, 400, 400);
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
@@ -70,3 +79,5 @@ public class MenuScreen extends Application {
         launch(args);
     }
 }
+
+
