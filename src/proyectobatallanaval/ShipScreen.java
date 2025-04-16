@@ -106,6 +106,8 @@ public class ShipScreen extends Application {
         layout.setStyle("-fx-padding: 20px;");
 
         Scene scene = new Scene(layout, 400 + (gridSize * 10), 500 + (gridSize * 5));
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+
         mainStage.setTitle("Ship Placement");
         mainStage.setScene(scene);
         mainStage.show();

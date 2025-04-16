@@ -70,6 +70,8 @@ public class MenuScreen extends Application {
         layout.setStyle("-fx-padding: 20px;");
 
         Scene scene = new Scene(layout, 400, 400);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+
         primaryStage.setTitle("Main Menu");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -79,5 +81,3 @@ public class MenuScreen extends Application {
         launch(args);
     }
 }
-
-

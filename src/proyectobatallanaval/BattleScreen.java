@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.animation.FadeTransition;
+import javafx.util.Duration;
 
 import java.util.*;
 
@@ -31,43 +33,43 @@ public class BattleScreen extends Application {
     private VBox player1Box, player2Box;
 
     private final String[] mensajesTocado = {
-    "🎯 ¡Pum! Gabriel estaría diciendo: 'Eso fue... apenas aceptable'.",
-    "🚀 ¡Le diste justo! Hairol lo habría esquivado, pero no este barco.",
-    "🔥 ¡Impacto confirmado! El Dr. Douglas anotó un '+1' mental.",
-    "💥 ¡Crack! Como cuando Gabriel suelta un examen y todos lloran.",
-    "🧠 ¡Preciso! Hasta Hairol frunció el ceño de respeto.",
-    "🎯 ¡Directo al CPU enemigo! Douglas lo convertiría en pregunta de examen.",
-    "🧠 ¡Impacto validado! Hairol dijo: 'Está bonito'.",
-    "🧨 ¡Tocado! Gabriel lo vio... y no dijo que le faltaba lógica. Increíble.",
-    "🔥 ¡Fino! Así se juega en la UNA, no con juegos de consola, sino de consola de texto.",
-    "💻 ¡Precisión UNA! Solo los que han pasado con Douglas entienden este nivel.",
-    "🤖 ¡Boom! Hairol lo dijo: 'Está bonito'... y eso significa nivel Dios."
-};
+        "🎯 ¡Pum! Gabriel estaría diciendo: 'Eso fue... apenas aceptable'.",
+        "🚀 ¡Le diste justo! Hairol lo habría esquivado, pero no este barco.",
+        "🔥 ¡Impacto confirmado! El Dr. Douglas anotó un '+1' mental.",
+        "💥 ¡Crack! Como cuando Gabriel suelta un examen y todos lloran.",
+        "🧠 ¡Preciso! Hasta Hairol frunció el ceño de respeto.",
+        "🎯 ¡Directo al CPU enemigo! Douglas lo convertiría en pregunta de examen.",
+        "🧠 ¡Impacto validado! Hairol dijo: 'Está bonito'.",
+        "🧨 ¡Tocado! Gabriel lo vio... y no dijo que le faltaba lógica. Increíble.",
+        "🔥 ¡Fino! Así se juega en la UNA, no con juegos de consola, sino de consola de texto.",
+        "💻 ¡Precisión UNA! Solo los que han pasado con Douglas entienden este nivel.",
+        "🤖 ¡Boom! Hairol lo dijo: 'Está bonito'... y eso significa nivel Dios."
+    };
 
     private final String[] mensajesAgua = {
-    "💦 ¡Splash! Fallaste más que el WiFi en la UNA.",
-    "🐟 ¡Solo mojaste peces! Gabriel lo llama desperdicio de recursos.",
-    "💧 ¡Agua! Douglas murmuró: 'eso es un sacrilegio'.",
-    "🤿 ¡Fallaste! Como cuando olvidas poner punto y coma.",
-    "🚱 Fallaste. Gabriel ya estaba sacando la rúbrica de evaluación.",
-    "📉 Nada por aquí. Hairol miró el código y dijo: 'le falta lógica'.",
-    "🧊 ¡Error! Douglas anotó eso como ejemplo de lo que no se hace.",
-    "😐 Gabriel revisó el disparo... y repitió: 'le falta lógica'. Dos veces.",
-    "🧠 ¡Nada! Ni Hairol te salvó con un 'está bonito'. Eso duele."
-};
+        "💦 ¡Splash! Fallaste más que el WiFi en la UNA.",
+        "🐟 ¡Solo mojaste peces! Gabriel lo llama desperdicio de recursos.",
+        "💧 ¡Agua! Douglas murmuró: 'eso es un sacrilegio'.",
+        "🤿 ¡Fallaste! Como cuando olvidas poner punto y coma.",
+        "🚱 Fallaste. Gabriel ya estaba sacando la rúbrica de evaluación.",
+        "📉 Nada por aquí. Hairol miró el código y dijo: 'le falta lógica'.",
+        "🧊 ¡Error! Douglas anotó eso como ejemplo de lo que no se hace.",
+        "😐 Gabriel revisó el disparo... y repitió: 'le falta lógica'. Dos veces.",
+        "🧠 ¡Nada! Ni Hairol te salvó con un 'está bonito'. Eso duele."
+    };
 
     private final String[] mensajesHundido = {
-    "🚢 ¡Hundido! Gabriel lo aceptó... pero dijo que aún puede mejorar.",
-    "💣 ¡Boom! Hairol dijo: 'está bonito', y eso es oro puro.",
-    "🧠 ¡Explosión precisa! Douglas lo demostraría con un teorema.",
-    "⚓ ¡Barco al fondo! Gabriel no encontró errores. Inédito.",
-    "🔥 ¡Acorazado destruido! Nivel de tesis con Douglas.",
-    "⛴️ ¡Impacto total! Hairol ya quiere ver el pseudocódigo.",
-    "📈 ¡Ejecutado con lógica! Gabriel no dijo su frase favorita.",
-    "💥 ¡Hundido! Douglas simplemente dijo: 'Correcto'. Y eso es histórico.",
-    "🎓 ¡Perfección UNA! El barco cayó con elegancia, como algoritmo bien escrito.",
-    "📌 ¡Fin del barco! Hairol se rió... y dijo 'está bonito'."
-};
+        "🚢 ¡Hundido! Gabriel lo aceptó... pero dijo que aún puede mejorar.",
+        "💣 ¡Boom! Hairol dijo: 'está bonito', y eso es oro puro.",
+        "🧠 ¡Explosión precisa! Douglas lo demostraría con un teorema.",
+        "⚓ ¡Barco al fondo! Gabriel no encontró errores. Inédito.",
+        "🔥 ¡Acorazado destruido! Nivel de tesis con Douglas.",
+        "⛴️ ¡Impacto total! Hairol ya quiere ver el pseudocódigo.",
+        "📈 ¡Ejecutado con lógica! Gabriel no dijo su frase favorita.",
+        "💥 ¡Hundido! Douglas simplemente dijo: 'Correcto'. Y eso es histórico.",
+        "🎓 ¡Perfección UNA! El barco cayó con elegancia, como algoritmo bien escrito.",
+        "📌 ¡Fin del barco! Hairol se rió... y dijo 'está bonito'."
+    };
 
     public BattleScreen(int gridSize, int[][] player1Board, int[][] player2Board, String player1Name, String player2Name, String gameMode) {
         this.gridSize = gridSize;
@@ -88,8 +90,8 @@ public class BattleScreen extends Application {
         turnLabel = new Label("Turno: " + getCurrentPlayerName());
         turnLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
 
-        player1Grid = createPlayerGrid(player1Board, currentPlayer == 2);
-        player2Grid = createPlayerGrid(player2Board, currentPlayer == 1);
+        player1Grid = createPlayerGrid(player1Board, false);
+        player2Grid = createPlayerGrid(player2Board, false);
 
         player1Box = new VBox(new Label(player1Name + " (Tú)"), player1Grid);
         player2Box = new VBox(new Label(player2Name + (gameMode.equals("Vs Bot") ? " (Bot)" : " (Enemigo)")), player2Grid);
@@ -105,9 +107,13 @@ public class BattleScreen extends Application {
         layout.setStyle("-fx-padding: 20px; -fx-alignment: center;");
 
         Scene scene = new Scene(layout, 900, 650);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+
         mainStage.setTitle("Batalla Naval");
         mainStage.setScene(scene);
         mainStage.show();
+
+        actualizarTableros(); 
     }
 
     private void mostrarTableroBot() {
@@ -124,21 +130,15 @@ public class BattleScreen extends Application {
         alert.showAndWait();
     }
 
-    private GridPane createPlayerGrid(int[][] board, boolean isEnemy) {
+    private GridPane createPlayerGrid(int[][] board, boolean dummyFlag) {
         GridPane grid = new GridPane();
         for (int row = 0; row < gridSize; row++) {
             for (int col = 0; col < gridSize; col++) {
                 Rectangle cell = new Rectangle(30, 30);
                 cell.setStroke(Color.BLACK);
                 cell.setFill(getCellColor(board[row][col]));
-                if (isEnemy) {
-                    final int r = row, c = col;
-                    cell.setOnMouseClicked(e -> {
-                        if ((currentPlayer == 1 && board == player2Board) || (currentPlayer == 2 && board == player1Board)) {
-                            handlePlayerShot(cell, r, c);
-                        }
-                    });
-                }
+                final int r = row, c = col;
+                cell.setOnMouseClicked(e -> handlePlayerShot(cell, r, c, board));
                 grid.add(cell, col, row);
             }
         }
@@ -153,19 +153,30 @@ public class BattleScreen extends Application {
         };
     }
 
-    private void handlePlayerShot(Rectangle cell, int row, int col) {
-        int[][] enemyBoard = (currentPlayer == 1) ? player2Board : player1Board;
-        if (enemyBoard[row][col] == 1) {
-            enemyBoard[row][col] = 2;
+    private void handlePlayerShot(Rectangle cell, int row, int col, int[][] targetBoard) {
+        
+        if ((currentPlayer == 1 && targetBoard != player2Board) || (currentPlayer == 2 && targetBoard != player1Board)) {
+            showMessage("¡No es tu turno!");
+            return;
+        }
+
+        if (targetBoard[row][col] == 2 || targetBoard[row][col] == 3) {
+            return; 
+        }
+
+        boolean hit = targetBoard[row][col] == 1;
+
+        if (hit) {
+            targetBoard[row][col] = 2;
             cell.setFill(Color.RED);
             ReproductorSonido.reproducir("distant-explosion-47562.mp3");
-            if (isShipSunk(enemyBoard)) {
+            showMessage(getMensajeRandom(mensajesTocado));
+
+            if (isShipSunk(targetBoard)) {
                 showMessage(getMensajeRandom(mensajesHundido));
-            } else {
-                showMessage(getMensajeRandom(mensajesTocado));
             }
-        } else if (enemyBoard[row][col] == 0) {
-            enemyBoard[row][col] = 3;
+        } else {
+            targetBoard[row][col] = 3;
             cell.setFill(Color.BLUE);
             ReproductorSonido.reproducir("water-splash-199583.mp3");
             showMessage(getMensajeRandom(mensajesAgua));
@@ -228,6 +239,7 @@ public class BattleScreen extends Application {
                         return;
                     }
                 }
+
                 continue;
             } else if (player1Board[row][col] == 0) {
                 player1Board[row][col] = 3;
@@ -249,8 +261,7 @@ public class BattleScreen extends Application {
 
     private javafx.scene.Node getNodeFromGridPane(GridPane grid, int col, int row) {
         for (javafx.scene.Node node : grid.getChildren()) {
-            if (GridPane.getColumnIndex(node) != null && GridPane.getRowIndex(node) != null &&
-                GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
                 return node;
             }
         }
@@ -277,44 +288,58 @@ public class BattleScreen extends Application {
     }
 
     private void showWinner() {
-        String message;
-        boolean p1Wins = isShipSunk(player2Board);
-        boolean p2Wins = isShipSunk(player1Board);
+    String message;
+    boolean p1Wins = isShipSunk(player2Board);
+    boolean p2Wins = isShipSunk(player1Board);
 
-        if (p1Wins && p2Wins) {
-            message = "¡Empate!";
-        } else if (p1Wins) {
-            message = "¡Ganador: " + player1Name + "!";
-        } else {
-            message = "¡Ganador: " + player2Name + "!";
-        }
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message + "\n¿Jugar otra vez?", ButtonType.YES, ButtonType.NO);
-        alert.setHeaderText(null);
-        alert.showAndWait().ifPresent(resp -> {
-            if (resp == ButtonType.YES) {
-                MainScreen main = new MainScreen();
-                Stage newStage = new Stage();
-                main.start(newStage);
-            }
-            mainStage.close();
-        });
+    if (p1Wins && p2Wins) {
+        message = "¡Empate!";
+    } else if (p1Wins) {
+        message = "¡Ganador: " + player1Name + "!";
+    } else {
+        message = "¡Ganador: " + player2Name + "!";
     }
+
+    ReproductorSonido.reproducir("victorymale-version-230553.mp3");
+
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, message + "\n¿Jugar otra vez?", ButtonType.YES, ButtonType.NO);
+    alert.setHeaderText(null);
+    alert.showAndWait().ifPresent(resp -> {
+        if (resp == ButtonType.YES) {
+            MainScreen main = new MainScreen();
+            Stage newStage = new Stage();
+            main.start(newStage);
+        }
+        mainStage.close();
+    });
+}
+
 
     private void switchTurn() {
         currentPlayer = (currentPlayer == 1) ? 2 : 1;
         turnLabel.setText("Turno: " + getCurrentPlayerName());
 
-        if (gameMode.equals("Vs Humano")) {
-            player1Grid = createPlayerGrid(player1Board, currentPlayer == 2);
-            player2Grid = createPlayerGrid(player2Board, currentPlayer == 1);
-            player1Box.getChildren().set(1, player1Grid);
-            player2Box.getChildren().set(1, player2Grid);
-        }
+        FadeTransition ft = new FadeTransition(Duration.millis(500), turnLabel);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
+
+        player1Box.setStyle("-fx-background-color: " + (currentPlayer == 1 ? "#e3f2fd" : "transparent"));
+        player2Box.setStyle("-fx-background-color: " + (currentPlayer == 2 ? "#e3f2fd" : "transparent"));
+
+        actualizarTableros();
+    }
+
+    private void actualizarTableros() {
+        player1Grid = createPlayerGrid(player1Board, false);
+        player2Grid = createPlayerGrid(player2Board, false);
+        player1Box.getChildren().set(1, player1Grid);
+        player2Box.getChildren().set(1, player2Grid);
     }
 
     private String getCurrentPlayerName() {
         return (currentPlayer == 1) ? player1Name : player2Name;
     }
+    
 }
 
