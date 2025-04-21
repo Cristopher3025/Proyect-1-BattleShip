@@ -1,0 +1,82 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: linear-gradient(to bottom, #001f3f, #003366);
+}
+
+.label {
+    -fx-text-fill: #000000;   
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 4, 0.5, 0, 1);
+}
+
+
+
+.button {
+    -fx-background-color: #0077be;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 15px 8px 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 4, 0.5, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: #005f99;
+}
+
+.grid-pane {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-padding: 10px;
+    -fx-border-color: #004d73;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.alert {
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-background-color: #e0f2ff;
+    -fx-text-fill: black;
+    -fx-border-color: #007acc;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-padding: 4px;
+    -fx-prompt-text-fill: #666666;
+}
+
+.choice-box,
+.combo-box {
+    -fx-background-color: #ffffff;    
+    -fx-border-color: #007acc;
+    -fx-border-radius: 5px;
+    -fx-padding: 4px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;           
+    -fx-opacity: 1;                   
+}
+
+
+.choice-box .button-cell,
+.combo-box .text {
+    -fx-text-fill: #000000;
+}
+.choice-box .arrow-button .arrow,
+.combo-box .arrow-button .arrow {
+    -fx-fill: #000000;
+}
+
+
+.choice-box .list-cell:selected,
+.combo-box .list-cell:selected {
+    -fx-background-color: #0077be;
+    -fx-text-fill: #ffffff;
+}
+
+.radio-button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}

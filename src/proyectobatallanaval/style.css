@@ -4,7 +4,7 @@
 }
 
 .label {
-    -fx-text-fill: #000000;   /* ahora negro puro */
+    -fx-text-fill: #000000;   
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 4, 0.5, 0, 1);
@@ -50,16 +50,16 @@
 
 .choice-box,
 .combo-box {
-    -fx-background-color: #ffffff;    /* fondo blanco */
+    -fx-background-color: #ffffff;    
     -fx-border-color: #007acc;
     -fx-border-radius: 5px;
     -fx-padding: 4px;
     -fx-font-size: 14px;
-    -fx-text-fill: #000000;           /* texto negro, legible */
-    -fx-opacity: 1;                   /* asegúrate de que no se atenúe */
+    -fx-text-fill: #000000;           
+    -fx-opacity: 1;                   
 }
 
-/* flecha y texto dentro del control */
+
 .choice-box .button-cell,
 .combo-box .text {
     -fx-text-fill: #000000;
@@ -69,7 +69,7 @@
     -fx-fill: #000000;
 }
 
-/* seleccionados en el desplegable */
+
 .choice-box .list-cell:selected,
 .combo-box .list-cell:selected {
     -fx-background-color: #0077be;
