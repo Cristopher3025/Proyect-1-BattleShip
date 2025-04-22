@@ -16,6 +16,7 @@ import javafx.animation.FadeTransition;
 import javafx.util.Duration;
 
 import java.util.*;
+import javafx.scene.control.DialogPane;
 
 public class BattleScreen extends Application {
 
@@ -48,6 +49,7 @@ public class BattleScreen extends Application {
 
     private final String[] mensajesAgua = {
         "💦 ¡Splash! Fallaste más que el WiFi en la UNA.",
+        
         "🐟 ¡Solo mojaste peces! Gabriel lo llama desperdicio de recursos.",
         "💧 ¡Agua! Douglas murmuró: 'eso es un sacrilegio'.",
         "🤿 ¡Fallaste! Como cuando olvidas poner punto y coma.",
@@ -156,6 +158,7 @@ public class BattleScreen extends Application {
     private void handlePlayerShot(Rectangle cell, int row, int col, int[][] targetBoard) {
         
         if ((currentPlayer == 1 && targetBoard != player2Board) || (currentPlayer == 2 && targetBoard != player1Board)) {
+            ReproductorSonido.reproducir("errorAudio.mpeg");
             showMessage("¡No es tu turno!");
             return;
         }
@@ -293,17 +296,26 @@ public class BattleScreen extends Application {
     boolean p2Wins = isShipSunk(player1Board);
 
     if (p1Wins && p2Wins) {
-        message = "¡Empate!";
+        message = "Empate absoluto. Dos voluntades enfrentadas, ninguna vencida.";
     } else if (p1Wins) {
-        message = "¡Ganador: " + player1Name + "!";
+        message = "Victoria para " + player1Name + ".";
     } else {
-        message = "¡Ganador: " + player2Name + "!";
+        message = "Victoria para " + player2Name + ".";
     }
+
+    String cierre = "\n\n\"No fue azar. Fue estrategia, cálculo y dominio de uno mismo.\"\n" +
+                    "“El hombre superior es aquel que se supera a sí mismo constantemente.” – Nietzsche";
 
     ReproductorSonido.reproducir("victorymale-version-230553.mp3");
 
-    Alert alert = new Alert(Alert.AlertType.INFORMATION, message + "\n¿Jugar otra vez?", ButtonType.YES, ButtonType.NO);
-    alert.setHeaderText(null);
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, message + cierre + "\n\n¿Jugar otra vez?", ButtonType.YES, ButtonType.NO);
+    alert.setTitle("Fin de la batalla");
+    alert.setHeaderText("Resultado final");
+
+    DialogPane dialogPane = alert.getDialogPane();
+    dialogPane.setStyle("-fx-font-size: 14px; -fx-font-family: 'Georgia'; -fx-background-color: #1b1b1b;");
+    dialogPane.lookup(".content.label").setStyle("-fx-text-fill: #e0e0e0;");
+
     alert.showAndWait().ifPresent(resp -> {
         if (resp == ButtonType.YES) {
             MainScreen main = new MainScreen();
@@ -313,6 +325,7 @@ public class BattleScreen extends Application {
         mainStage.close();
     });
 }
+
 
 
     private void switchTurn() {

@@ -135,6 +135,7 @@ public class ShipScreen extends Application {
         boolean isHorizontal = ((RadioButton) orientationGroup.getToggles().get(0)).isSelected();
 
         if ((isHorizontal && col + length > gridSize) || (!isHorizontal && row + length > gridSize)) {
+            ReproductorSonido.reproducir("errorAudio.mpeg");
             turnLabel.setText("¡No cabe el barco en esa posición!");
             return;
         }
@@ -143,6 +144,7 @@ public class ShipScreen extends Application {
             int r = isHorizontal ? row : row + i;
             int c = isHorizontal ? col + i : col;
             if (playerBoard[r][c] == 1) {
+                ReproductorSonido.reproducir("errorAudio.mpeg");
                 turnLabel.setText("¡Ya hay un barco en esa posición!");
                 return;
             }
@@ -155,6 +157,7 @@ public class ShipScreen extends Application {
             Rectangle cellRect = (Rectangle) getNodeFromGridPane(gridPane, c, r);
             cellRect.setFill(Color.GRAY);
         }
+        ReproductorSonido.reproducir("boat-horn-307462.mp3");
 
         placedShips++;
         if (placedShips >= shipLimits.get(currentShipType)) {
@@ -179,30 +182,41 @@ public class ShipScreen extends Application {
     }
 
     private void switchTurnOrStartBattle() {
-        if (isPlayer1Turn) {
-            player1Board = playerBoard;
-            isPlayer1Turn = false;
-            currentShipType = "Submarine";
-            placedShips = 0;
-            playerBoard = new int[gridSize][gridSize];
 
-            if (MenuScreen.gameModeGlobal.equals("Vs Bot")) {
-                autoPlaceBotShips();
-                BattleScreen battleScreen = new BattleScreen(gridSize, player1Board, player2Board, player1Name, player2Name, MenuScreen.gameModeGlobal);
-                Stage battleStage = new Stage();
-                battleScreen.start(battleStage);
-                mainStage.close();
-            } else {
-                setupPlacementScreen();
-            }
-        } else {
-            player2Board = playerBoard;
+    if (isPlayer1Turn) {
+        player1Board = playerBoard;
+        isPlayer1Turn = false;
+        currentShipType = "Submarine";
+        placedShips = 0;
+        playerBoard = new int[gridSize][gridSize];
+
+        if (MenuScreen.gameModeGlobal.equals("Vs Bot")) {
+            autoPlaceBotShips();
+            
+           
+            ReproductorSonido.reproducir("startGame.mpeg");
+
             BattleScreen battleScreen = new BattleScreen(gridSize, player1Board, player2Board, player1Name, player2Name, MenuScreen.gameModeGlobal);
             Stage battleStage = new Stage();
             battleScreen.start(battleStage);
             mainStage.close();
+        } else {
+            setupPlacementScreen();
         }
+
+    } else {
+        player2Board = playerBoard;
+
+       
+        ReproductorSonido.reproducir("startGame.mpeg");
+
+        BattleScreen battleScreen = new BattleScreen(gridSize, player1Board, player2Board, player1Name, player2Name, MenuScreen.gameModeGlobal);
+        Stage battleStage = new Stage();
+        battleScreen.start(battleStage);
+        mainStage.close();
     }
+}
+
 
     private void autoPlaceBotShips() {
         player2Board = new int[gridSize][gridSize];
